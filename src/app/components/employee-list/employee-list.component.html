@@ -1,4 +1,5 @@
 <section class="container">
+  <p [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</p>
 
   <div class="row">
 
@@ -30,4 +31,4 @@
 
 </section>
 
-<employee-new-modal #myModal></employee-new-modal>
+<employee-new-modal #myModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>

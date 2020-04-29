@@ -250,3 +250,50 @@
     ```
     declare const $;
     ```
+## Decorator Output
+  Decorador que marca um campo de classe como uma propriedade de saída e fornece metadados de configuração. A propriedade DOM vinculada à propriedade de saída é atualizada automaticamente durante a detecção de alterações
+  - Referencia: ```https://angular.io/api/core/Output```
+  - O decorator Output precisa de um tipo EventEmitter para lidar com saídas de evento:
+    ```
+    @Output()
+    onSubmit:EventEmitter<Employee> = new EventEmitter<Employee>();
+    ```
+  - O EventEmitter dispõe do método ```emit()```, para ser coloca do fluxo final desejado, podendo enviar por parametro alguma informação definida no Generics do EventEmitter. Neste caso Employee.
+    ```
+    this.onSubmit.emit(copy);
+    ```
+  - Declaração de um Output para escutar gravação de um formulário 
+    ```
+    import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
+    import { EmployeeService, Employee } from 'src/app/services/employee-service';
+
+    declare const $;
+
+    @Component({
+      selector: 'employee-new-modal',
+      templateUrl: './employee-new-modal.component.html',
+      styleUrls: ['./employee-new-modal.component.scss']
+    })
+    export class EmployeeNewModalComponent implements OnInit {
+
+      employee: Employee;
+
+      @Output()
+      onSubmit:EventEmitter<Employee> = new EventEmitter<Employee>();
+
+      constructor(private element: ElementRef, public employeeService: EmployeeService) {
+        this.employee = {name:'',salary:0};
+      }
+
+      addEmployee(event: Event){
+        let copy:Employee = Object.assign({}, this.employee);
+        copy.bonus = copy.salary >= 1000 ? 0 : copy.bonus;
+        this.employeeService.addEmployee(copy);
+        this.onSubmit.emit(copy);
+        this.hide();
+      }
+    }
+
+    // na view
+    <employee-new-modal #myModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>
+    ```

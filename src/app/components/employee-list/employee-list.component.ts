@@ -11,8 +11,9 @@ import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-mo
 })
 export class EmployeeListComponent implements OnInit {
 
-  // employees: Array<Employee> = employees;
-  employees: Array<Employee> = [];
+  newEmployeeAdded: Employee;
+  showMessageSuccess:boolean = false;
+  employees: Array<Employee> = []; // employees: Array<Employee> = employees;
 
   // https://angular.io/api/core/ViewChild#description
   @ViewChild('myModal') // Pegar referencia de um elemento, no caso o EmployeeNewModalComponent. No caso de mais de diretiva dentro list Ele pega todas as instancias indexadas.
@@ -20,10 +21,7 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(public employeeService:EmployeeService) {
     this.employees = this.employeeService.employees;
-
-    setTimeout( ()=>{
-      console.log(this.employeeNewModal);
-    }, 100 )
+    // this.newEmployeeAdded = {name:'',salary:0}; - Usando notação newEmployee?.name check exists
   }
 
   ngOnInit(): void {
@@ -35,7 +33,11 @@ export class EmployeeListComponent implements OnInit {
 
   showNewEmployeeModal(evt){
     this.employeeNewModal.show();
-    // console.log(this.employeeNewModal);
 
+  }
+
+  onNewEmployee(employee: Employee){
+    this.newEmployeeAdded = employee;
+    this.showMessageSuccess = true;
   }
 }

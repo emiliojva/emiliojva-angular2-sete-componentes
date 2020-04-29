@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { EmployeeService, Employee } from 'src/app/services/employee-service';
 
 declare const $;
@@ -12,6 +12,9 @@ export class EmployeeNewModalComponent implements OnInit {
 
   employee: Employee;
 
+  @Output()
+  onSubmit:EventEmitter<Employee> = new EventEmitter<Employee>();
+
   constructor(private element: ElementRef, public employeeService: EmployeeService) {
     this.employee = {name:'',salary:0};
   }
@@ -22,9 +25,10 @@ export class EmployeeNewModalComponent implements OnInit {
 
   addEmployee(event: Event){
     // event.preventDefault();
-    let copy = Object.assign({}, this.employee);
+    let copy:Employee = Object.assign({}, this.employee);
     copy.bonus = copy.salary >= 1000 ? 0 : copy.bonus;
     this.employeeService.addEmployee(copy);
+    this.onSubmit.emit(copy);
     this.hide();
   }
 
