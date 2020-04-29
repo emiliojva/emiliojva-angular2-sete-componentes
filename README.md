@@ -117,6 +117,7 @@
 
 ## Integração com bootstrap
   - Referência ```https://getbootstrap.com/docs/4.4/getting-started/download/#npm```
+  - npm package ```https://www.npmjs.com/package/bootstrap```
   - Integração com bibliotecas de terceiros (bootstrap, materialize, material lite e etc)
     ```
     npm install bootstrap jquery popper.js --save
@@ -151,4 +152,48 @@
     ```
     ver exemplo modal
     https://getbootstrap.com/docs/4.4/components/modal/#live-demo
+    ```
+## Iniciando com diretivas (attribute directives)
+  Uma diretiva de atributo altera a aparência ou o comportamento de um elemento DOM.
+  Algumas vezes criar um componente séra custoso e desnecessário. Para atingir propriedades com regras e efeitos especiais,
+  usamos diretivas. 
+  - Referencia ```https://angular.io/guide/attribute-directives```
+
+  - @Directive() Decorador que marca uma classe como uma diretiva Angular. Você pode definir suas próprias diretivas para anexar um comportamento personalizado aos elementos no DOM.
+
+  - Criando uma diretiva com angular-cli
+    ```
+    npm run ng g directive salary-color
+    ```
+  - Exemplo de uma diretiva que aplica cor de acordo com valor do salario
+    ```
+    // model
+    import { Directive, ElementRef, Input } from '@angular/core';
+
+    @Directive({
+      selector: '[salaryColor]'
+    })
+    export class SalaryColorDirective {
+
+      @Input()
+      salaryColor: string;
+
+      @Input()
+      x:any;
+
+      constructor(private element: ElementRef) {
+        setTimeout(()=>{
+          // console.log(this.salaryColor);
+          const activeElementDOM: HTMLElement = this.element.nativeElement; // DOM Element com diretiva aplicada
+          const salary:number = parseFloat(this.salaryColor); // const valor:number = parseFloat(activeElementDOM.innerHTML);
+          activeElementDOM.style.color = salary > 1000 ? 'green' : 'black';
+          console.log(this.x);
+        },1000)
+
+      }
+
+    }
+
+    // view
+    <p [innerHTML]="emp.salary" salaryColor="{{emp.salary}}" x="10"></p>
     ```
