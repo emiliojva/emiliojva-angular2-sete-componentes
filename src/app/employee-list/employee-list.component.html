@@ -1,0 +1,45 @@
+<section>
+  <div class="card employee-card"  *ngFor="let emp of employees">
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <div class="card-body">
+      <h5 class="card-title"  [innerHTML]=" 'Name:'+ emp.name ">Card title</h5>
+      <p class="card-text" [innerHTML]=" 'Salary:'+ emp.salary "
+      [style.color]="getSalaryColor(emp)"
+      [ngClass]="{
+                  'salary-expansive':emp.salary>1000,
+                  'salary-cheap':emp.salary<1000
+                }">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p *ngIf="emp.bonus"
+      [innerHTML]=" 'Bonus:'+ emp.bonus "></p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</section>
+<section [hidden]="true">
+
+  <!-- <div class="employee-card">&nbsp;<ng-content></ng-content></div> -->
+  <div class="employee-no-list" *ngIf="employees.length==0">
+    No employee List
+  </div>
+
+  <div class="employee-card" *ngFor="let emp of employees">
+    <!-- <div>Name: {{ emp.name }}</div> -->
+    <div [innerHTML]=" 'Name:'+ emp.name "></div>
+    <!-- <div>Salary: {{ emp.salary }}</div> -->
+    <div
+      [innerHTML]=" 'Salary:'+ emp.salary "
+      [style.color]="getSalaryColor(emp)"
+      [ngClass]="{
+                  'salary-expansive':emp.salary>1000,
+                  'salary-cheap':emp.salary<1000
+                }">
+    </div>
+
+    <div
+      *ngIf="emp.bonus"
+      [innerHTML]=" 'Bonus:'+ emp.bonus ">
+    </div>
+  </div>
+
+</section>
+

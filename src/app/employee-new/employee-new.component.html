@@ -1,0 +1,34 @@
+<label for="name">Name:</label>
+<input type="text" [(ngModel)]="employee.name"/>
+<br>
+<!-- <label for="name">Last Name:</label>
+<input type="text" [(ngModel)]="lastName"/>
+<br> -->
+<label for="salary">Salary:</label>
+<input type="number" [(ngModel)]="employee.salary"/>
+
+<br>
+<!-- <div *ngIf="employee.salary<1000">
+<label for="bonus">Bonus:</label>
+<input type="number" [(ngModel)]="employee.bonus"/>
+</div> -->
+
+<!-- diretiva hidden -->
+<div [hidden]="employee.salary<1000">
+  <label for="bonus">Bonus:</label>
+  <input type="number" [(ngModel)]="employee.bonus"/>
+</div>
+<button type="button" (click)="addEmployee($event)">adicionar</button>
+
+{{ echo() }}
+
+<h4>{{employee.name}}</h4>
+<!-- <h4>{{lastName}}</h4> -->
+<!-- <h4 [style.color]="EmployeeListComponent.getSalaryColor(employee)">{{employee.salary}}</h4> -->
+
+
+<!-- [name] - responde ao Component(Model)-->
+<!-- (name) - View se comunica com Model-->
+<!-- A diretiva [(ngModel)] do pacote @angular/forms interfere no inputElement, torna-o reativo (modifica view e model)-->
+
+
