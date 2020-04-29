@@ -1,5 +1,5 @@
-# SON - Iniciando com Angular2 - Versão 7 
-  Angular é uma plataforma de desenvolvimento para a construção de aplicativos Web e dispositivos móveis usando TypeScript / JavaScript e outros linguagens.
+# SON - Iniciando com Angular2 - Versão 7 - Componentes
+  Angular é uma plataforma de desenvolvimento para a construção de aplicativos Web e dispositivos móveis usando TypeScript / JavaScript e outros linguagens. Foco em componentização.
   - Site ```https://angular.io```
   - Documentação ```https://angular.io/api```
   - Repositório ```https://github.com/angular/angular```
@@ -7,8 +7,9 @@
   - ChangeLo - ```https://github.com/angular/angular/blob/master/CHANGELOG.md```
   - Quick Start ```https://angular.io/start```
 
-## Repositório do projeto
-- Repositório GIT ```https://github.com/emiliojva/emiliojva-son-angular2-sete```  
+## Repositórios do projeto
+- Repositório GIT ```https://github.com/emiliojva/emiliojva-angular2-sete-componentes```  
+- Repositório GIT ANGULAR7 STARTED ```https://github.com/emiliojva/emiliojva-angular2-sete```  
   
 
 ## Notas da Versão 
@@ -115,3 +116,32 @@
     * E no ```@ngModule()``` ele carrega na chave bootstrap o ```AppComponent```
 
 ## Integração com bootstrap
+  - Referência ```https://getbootstrap.com/docs/4.4/getting-started/download/#npm```
+  - Integração com bibliotecas de terceiros (bootstrap, materialize, material lite e etc)
+    ```
+    npm install bootstrap jquery popper.js --save
+    ```
+  - Posso importar somente um módulo/componente da biblioteca(bootstrap)
+  - Configurando globalmente o bootstrap no angular.json:
+    *  Na parte de arquitetura(architect json)
+    ```
+    "architect": {
+      "build": {
+        "options": {
+          "styles": [
+            "src/styles.scss",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
+          "scripts": [
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+          ]
+        }
+      }
+    }
+    ```
+  - Testando se importaçao global funcionou. Acrestar class 'table' na tag table e ver efeito:
+    ```
+    <table class='table'>
+    ```  
