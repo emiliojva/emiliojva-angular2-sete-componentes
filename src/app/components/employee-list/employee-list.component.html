@@ -1,5 +1,7 @@
 <section class="container">
-  <p [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</p>
+  <!-- <p [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</p> -->
+
+  <alert-success [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</alert-success>
 
   <div class="row">
 

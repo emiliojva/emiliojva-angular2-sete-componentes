@@ -297,3 +297,16 @@
     // na view
     <employee-new-modal #myModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>
     ```
+
+## Componetizando Alert Bootstrap
+  - Criar um novo componente
+  - Inserir html do componente bootstrap e permitir interação com ```innerHTML``` através ```<ng-content>```
+    ```
+    <div class="alert alert-success" role="alert">
+      <ng-content></ng-content>
+    </div>
+    ```
+  - Uso do componente em qualquer outra parte do projeto, como um tag(webComponent)
+    ```
+    <alert-success [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</alert-success>
+    ```
