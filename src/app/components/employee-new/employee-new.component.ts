@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService, Employee } from '../services/employee-service';
+import { EmployeeService, Employee } from '../../services/employee-service';
 // import {employees as employeesMock, Employee} from '../mocks/employees';
 
 @Component({

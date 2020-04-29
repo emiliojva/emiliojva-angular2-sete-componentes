@@ -197,3 +197,49 @@
     // view
     <p [innerHTML]="emp.salary" salaryColor="{{emp.salary}}" x="10"></p>
     ```
+
+## Decorator ViewChild (Views Aninhadas ou filhas)
+  Decorator de propriedades que configura uma consulta de exibição. O detector de alterações procura o primeiro elemento ou a diretiva correspondente ao seletor na visualização DOM. Se o DOM da exibição for alterado e um novo filho corresponder ao seletor, a propriedade será atualizada.
+  - Referencia ```https://angular.io/api/core/ViewChild#description```
+  - Pegar referencia de um elemento, no caso o EmployeeNewModalComponent. No caso de mais de diretiva dentro list Ele pega todas as instancias indexadas por array.
+  - Exemplo de declaração do view child na view pai/caller
+    ```
+    export class EmployeeListComponent implements OnInit {
+      @ViewChild('myModal') 
+      employeeNewModal: EmployeeNewModalComponent;
+    }
+
+    /// conteudo do EmployeeNewModalComponent
+    import { Component, OnInit, ElementRef } from '@angular/core';
+    import { EmployeeService, Employee } from 'src/app/services/employee-service';
+
+    declare const $;
+
+    @Component({
+      selector: 'employee-new-modal',
+      templateUrl: './employee-new-modal.component.html',
+      styleUrls: ['./employee-new-modal.component.scss']
+    })
+    export class EmployeeNewModalComponent implements OnInit {
+
+      employee: Employee;
+
+      constructor(private element: ElementRef) {
+        this.employee = {name:'',salary:0};
+      }
+
+
+      ngOnInit(): void {
+      }
+
+      show(){
+        const divModal = this.getDivModal();
+        $(divModal).modal('show');
+      }
+
+      getDivModal(): HTMLElement{
+        const elementDOM:HTMLElement = this.element.nativeElement;
+        return elementDOM.firstElementChild as HTMLElement;
+      }
+    }
+    ```
