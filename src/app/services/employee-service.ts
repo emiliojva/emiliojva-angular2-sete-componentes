@@ -14,8 +14,8 @@ export interface Employee
 export class EmployeeService {
 
   private _employees: Array<Employee> = [
-    {name:"Cheap", salary:1000},
-    {name:"Expansive", salary:10001},
+    // {name:"Cheap", salary:1000},
+    // {name:"Expansive", salary:10001},
   ];
 
   constructor() { }

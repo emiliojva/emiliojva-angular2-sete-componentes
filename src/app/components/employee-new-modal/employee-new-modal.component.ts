@@ -12,7 +12,7 @@ export class EmployeeNewModalComponent implements OnInit {
 
   employee: Employee;
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, public employeeService: EmployeeService) {
     this.employee = {name:'',salary:0};
   }
 
@@ -20,13 +20,28 @@ export class EmployeeNewModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addEmployee(event: Event){
+    // event.preventDefault();
+    let copy = Object.assign({}, this.employee);
+    copy.bonus = copy.salary >= 1000 ? 0 : copy.bonus;
+    this.employeeService.addEmployee(copy);
+    this.hide();
+  }
+
   show(){
     const divModal = this.getDivModal();
     $(divModal).modal('show');
+
+  }
+
+  hide(){
+    const divModal = this.getDivModal();
+    $(divModal).modal('hide')
   }
 
   getDivModal(): HTMLElement{
     const elementDOM:HTMLElement = this.element.nativeElement;
-    return elementDOM.firstElementChild as HTMLElement;
+    // return elementDOM.firstElementChild as HTMLElement;
+    return elementDOM.querySelector('.modal') as HTMLElement;
   }
 }

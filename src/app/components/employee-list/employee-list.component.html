@@ -5,7 +5,7 @@
     <h1>Nossos Empregados</h1>
 
     <div class="col-12">
-      <button type="button" (click)="showNewEmployeeModal($event)">Adicionar Empregado</button>
+      <button type="button" class="btn btn-primary" (click)="showNewEmployeeModal($event)">Adicionar Empregado</button>
     </div>
 
     <!--  -->
@@ -31,33 +31,3 @@
 </section>
 
 <employee-new-modal #myModal></employee-new-modal>
-
-
-
-<section [hidden]="true">
-  <!-- <div class="employee-card">&nbsp;<ng-content></ng-content></div> -->
-  <div class="employee-no-list" *ngIf="employees.length==0">
-    No employee List
-  </div>
-
-  <div class="employee-card" *ngFor="let emp of employees">
-    <!-- <div>Name: {{ emp.name }}</div> -->
-    <div [innerHTML]=" 'Name:'+ emp.name "></div>
-    <!-- <div>Salary: {{ emp.salary }}</div> -->
-    <div
-      [innerHTML]=" 'Salary:'+ emp.salary "
-      [style.color]="getSalaryColor(emp)"
-      [ngClass]="{
-                  'salary-expansive':emp.salary>1000,
-                  'salary-cheap':emp.salary<1000
-                }">
-    </div>
-
-    <div
-      *ngIf="emp.bonus"
-      [innerHTML]=" 'Bonus:'+ emp.bonus ">
-    </div>
-  </div>
-
-</section>
-

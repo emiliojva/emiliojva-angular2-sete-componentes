@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "employee-new-modal.component.scss"
-    ],
-    "names": [],
-    "file": "employee-new-modal.component.css"
-}

@@ -243,3 +243,10 @@
       }
     }
     ```
+
+## Integração com formulários HTML
+  - Ao utilizar a diretiva estrutural ```[(ngModel)]``` dentro de um formulário, se faz obrigatório incluir a propriedade ```name=""``` em todos os inputs/elements dentro da tag ```form```
+  - Ignorarando erro do compilador, no uso do jQuery (por exemplo)
+    ```
+    declare const $;
+    ```

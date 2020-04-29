@@ -26,10 +26,7 @@ export class EmployeeNewComponent implements OnInit {
   }
 
   addEmployee(event){
-    let copy = Object.assign({},this.employee);
-    // this.employees.push(this.name);
-    copy.bonus = copy.salary >= 1000 ? 0 : copy.bonus;
-    this.employeeService.addEmployee(copy);
+    this.employeeService.addEmployee(this.employee);
     console.log(this.employeeService.employees);
   }
 
