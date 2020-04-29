@@ -145,3 +145,10 @@
     ```
     <table class='table'>
     ```  
+
+## Verificando integração com Bootstrap
+  - Componentizando com modal. Ao colocar o Component Visual do Bootstrap ele já é automaticamente importado 
+    ```
+    ver exemplo modal
+    https://getbootstrap.com/docs/4.4/components/modal/#live-demo
+    ```
