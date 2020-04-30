@@ -394,3 +394,19 @@
   </form>
 
   ```
+
+## @Input com metódos usando setters
+  - Reatribuição/reatividade de diretivas. Criar uma variavel manipulada pelo metodo setter. Permitindo entrada por atribuição e tratada no método.  
+    ```
+    // diretiva salary-color
+    @Input()
+    set salaryColor(value){
+      const activeElementDOM: HTMLElement = this.element.nativeElement; // DOM Element com diretiva aplicada
+      const salary:number = parseFloat(value); // const valor:number = parseFloat(activeElementDOM.innerHTML);
+      activeElementDOM.style.color = salary > 1000 ? 'green' : 'black';
+    }
+    
+    // view usando diretiva
+    <p class="card-text" [innerHTML]=" 'Salary:'+ emp.salary " [salaryColor]="emp.salary"></p>
+    ```
+
