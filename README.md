@@ -312,7 +312,7 @@
     ```
 
 ## Modal para edição
-  - Uso do ```object?.prop``` em caso, onde o ```component``` já foi declarado e carregado no ```NgModule``` mas ainda não possui a instância do objeto. Ex:
+  - Uso do ```object?.prop``` em caso, onde o ```component``` já foi declarado e carregado no ```NgModule``` mas ainda não possui a instância do objeto. https://angular.io/guide/template-syntax#the-safe-navigation-operator----and-null-property-paths Ex:
     ```
     <h5 class="modal-title" id="exampleModalLabel">Editar {{employee?.name}}</h5>
     ```
@@ -396,6 +396,8 @@
   ```
 
 ## @Input com metódos usando setters
+  Decorador que marca um campo de classe como uma propriedade de entrada e fornece metadados de configuração. A propriedade de entrada está vinculada a uma propriedade DOM no modelo. Durante a detecção de alterações, o Angular atualiza automaticamente a propriedade data com o valor da propriedade DOM. https://angular.io/guide/template-syntax#input-and-output-properties
+  - @Input () e @Output () permitem que o Angular compartilhe dados entre o contexto pai e as diretivas ou componentes filhos. Uma propriedade @Input () é gravável enquanto uma propriedade @Output () é observável.
   - Reatribuição/reatividade de diretivas. Criar uma variavel manipulada pelo metodo setter. Permitindo entrada por atribuição e tratada no método.  
     ```
     // diretiva salary-color
@@ -410,3 +412,29 @@
     <p class="card-text" [innerHTML]=" 'Salary:'+ emp.salary " [salaryColor]="emp.salary"></p>
     ```
 
+## Pipes
+
+  - Criação via angular-cli
+    ```
+    npm run ng g pipe my-currency
+    ```
+  - Interface de transformação PipeTransform
+    ```
+    import { Pipe, PipeTransform } from '@angular/core';
+
+    @Pipe({
+      name: 'myCurrency'
+    })
+    export class MyCurrencyPipe implements PipeTransform {
+
+      transform(value: unknown, ...args: unknown[]): unknown {
+        return `R$${value}`;
+      }
+
+    }
+    ```
+    * Na view
+    ```
+    {{data | date:'dd/MM/yyyy'}}
+    {{data | date:'fullDate' | uppercase}}
+    ```
