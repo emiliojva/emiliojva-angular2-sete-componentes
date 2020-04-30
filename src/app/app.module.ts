@@ -10,6 +10,7 @@ import { EmployeeNewModalComponent } from './components/employee-new-modal/emplo
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
 import { EmployeeEditModalComponent } from './components/employee-edit-modal/employee-edit-modal.component';
 import {EmployeeDeleteModalComponent} from './components/employee-delete-modal/employee-delete-modal.component';
+import { MyCurrencyPipe } from './pipes/my-currency.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import {EmployeeDeleteModalComponent} from './components/employee-delete-modal/e
     EmployeeDeleteModalComponent,
     SalaryColorDirective,
     EmployeeNewModalComponent,
-    AlertSuccessComponent
+    AlertSuccessComponent,
+    MyCurrencyPipe
   ],
   imports: [
     BrowserModule,

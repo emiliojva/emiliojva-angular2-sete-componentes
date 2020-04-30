@@ -30,9 +30,10 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(EmployeeDeleteModalComponent)
   employeeDeleteModal: EmployeeDeleteModalComponent;
 
+  data:Date = new Date('1981-08-13');
+
   constructor(public employeeService:EmployeeService) {
     this.employees = this.employeeService.employees;
-    // this.newEmployeeAdded = {name:'',salary:0}; - Usando notação newEmployee?.name check exists
   }
 
   ngOnInit(): void {
