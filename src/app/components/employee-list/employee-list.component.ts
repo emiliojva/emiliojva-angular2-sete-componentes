@@ -4,6 +4,7 @@ import { EmployeeService, Employee } from '../../services/employee-service';
 import { EmployeeNewComponent } from '../employee-new/employee-new.component';
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
+import { EmployeeDeleteModalComponent } from '../employee-delete-modal/employee-delete-modal.component';
 
 @Component({
   selector: 'employee-list',
@@ -13,7 +14,9 @@ import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit
 export class EmployeeListComponent implements OnInit {
 
   newEmployeeAdded: Employee;
-  editEmployee: Employee;
+  editedEmployee: Employee;
+  destroyedEmployed: Employee;
+
   showMessageSuccess:boolean = false;
   employees: Array<Employee> = []; // employees: Array<Employee> = employees;
 
@@ -23,6 +26,9 @@ export class EmployeeListComponent implements OnInit {
 
   @ViewChild('employeeEditModal')
   employeeEditModal: EmployeeEditModalComponent;
+
+  @ViewChild(EmployeeDeleteModalComponent)
+  employeeDeleteModal: EmployeeDeleteModalComponent;
 
   constructor(public employeeService:EmployeeService) {
     this.employees = this.employeeService.employees;
@@ -37,15 +43,18 @@ export class EmployeeListComponent implements OnInit {
   }
 
   showNewEmployeeModal(employee:Employee){
-    this.employeeService.employeeEdit = employee;
     this.employeeNewModal.show();
   }
 
   showEditEmployeeModal(employee:Employee){
-
     // this.employeeService.employeeEdit = employee;
-    this.editEmployee = employee;
+    this.editedEmployee = employee;
     this.employeeEditModal.show();
+  }
+
+  showDeleteEmployeeModal(employee: Employee){
+    this.employeeDeleteModal.employee = employee;
+    this.employeeDeleteModal.show();
   }
 
   onNewEmployee(employee: Employee){
@@ -57,4 +66,10 @@ export class EmployeeListComponent implements OnInit {
     this.newEmployeeAdded = employee;
     this.showMessageSuccess = true;
   }
+
+  onDestroyEmployee(event){
+    console.log(event);
+    this.employeeDeleteModal.hide();
+  }
+
 }

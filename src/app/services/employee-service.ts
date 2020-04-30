@@ -13,8 +13,6 @@ export interface Employee
 })
 export class EmployeeService {
 
-  employeeEdit: Employee;
-
   private _employees: Array<Employee> = [
     {name:"Cheap", salary:1000},
     // {name:"Expansive", salary:10001},
@@ -23,8 +21,12 @@ export class EmployeeService {
   constructor() { }
 
   addEmployee(employee: Employee){
-
     this._employees.push(employee);
+  }
+
+  destroyEmployee(employee:Employee){
+    let indexEmployee = this._employees.indexOf(employee)
+    this._employees.splice(indexEmployee,1);
   }
 
   get employees(){
