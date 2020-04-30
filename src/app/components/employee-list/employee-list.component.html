@@ -26,11 +26,12 @@
                   }">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <p *ngIf="emp.bonus"
         [innerHTML]=" 'Bonus:'+ emp.bonus "></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="javascript:void(0)" class="btn btn-primary" (click)="showEditEmployeeModal(emp)">Editar</a>
       </div>
     </div>
   </div>
 
 </section>
 
-<employee-new-modal #myModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>
+<employee-new-modal #employeeNewModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>
+<employee-edit-modal #employeeEditModal [employee]="editEmployee" (onSubmit)="onEditEmployee($event)"></employee-edit-modal>

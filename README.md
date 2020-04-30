@@ -310,3 +310,56 @@
     ```
     <alert-success [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</alert-success>
     ```
+
+## Modal para edição
+  - Uso do ```object?.prop``` em caso, onde o ```component``` já foi declarado e carregado no ```NgModule``` mas ainda não possui a instância do objeto. Ex:
+    ```
+    <h5 class="modal-title" id="exampleModalLabel">Editar {{employee?.name}}</h5>
+    ```
+  -  Formulários com campos ```[(ngModel)]``` irão emitir erro se buscarem valores nulos nas propriedades com bind. Com isso usa-se ```*ngIf``` para verificar se a instancia de objeto existe. ex:
+    ```
+    <div class="modal-body" *ngIf="employee">
+    ``` 
+  - ViewsChilds/Inputs - Em listagem de dados onde cada iteração pode ser editada, podemos estabelecer comunicação entre os webComponents, combinando @Input,@Output e @ViewChild. A cada clique no botão editar, modificar um valor no componente da lista, que pode ser inserido em um @input de outro component.
+    ```
+    <section class="container">
+      <alert-success [hidden]="!showMessageSuccess">Empregado {{ newEmployeeAdded?.name }} cadastrado!</alert-success>
+
+      <div class="row">
+
+        <h1>Nossos Empregados</h1>
+
+        <div class="col-12">
+          <button type="button" class="btn btn-primary" (click)="showNewEmployeeModal($event)">Adicionar Empregado</button>
+        </div>
+      
+        <div class="card employee-card"  *ngFor="let emp of employees">
+          <p [innerHTML]="emp.salary"
+          salaryColor="{{emp.salary}}" x="10"></p>
+          <div class="card-body">
+            <h5 class="card-title"  [innerHTML]=" 'Name:'+ emp.name ">Card title</h5>
+            <p class="card-text" [innerHTML]=" 'Salary:'+ emp.salary "
+            [style.color]="getSalaryColor(emp)"
+            [ngClass]="{
+                        'salary-expansive':emp.salary>1000,
+                        'salary-cheap':emp.salary<1000
+                      }">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p *ngIf="emp.bonus"
+            [innerHTML]=" 'Bonus:'+ emp.bonus "></p>
+            <a href="javascript:void(0)" class="btn btn-primary" (click)="showEditEmployeeModal(emp)">Editar</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <employee-new-modal #employeeNewModal (onSubmit)="onNewEmployee($event)"></employee-new-modal>
+    <employee-edit-modal #employeeEditModal [employee]="editEmployee" (onSubmit)="onEditEmployee($event)"></employee-edit-modal>
+    ```
+      * No source do component de listagem:
+        ```
+        showEditEmployeeModal(employee:Employee){
+          this.editEmployee = employee;
+          this.employeeEditModal.show();
+        }
+        ```

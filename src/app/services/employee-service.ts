@@ -13,8 +13,10 @@ export interface Employee
 })
 export class EmployeeService {
 
+  employeeEdit: Employee;
+
   private _employees: Array<Employee> = [
-    // {name:"Cheap", salary:1000},
+    {name:"Cheap", salary:1000},
     // {name:"Expansive", salary:10001},
   ];
 
